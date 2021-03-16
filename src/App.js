@@ -11,7 +11,7 @@ class App extends Component {
     loading: false,
   };
 
-// puts initial 30 users on the page when it first loads  
+  // puts initial 30 users on the page when it first loads
   // async componentDidMount() {
   //   this.setState({ loading: true });
   //   const res = await axios.get(
@@ -29,13 +29,25 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false });
   };
 
+  // clear users from state
+  clearUsers = () => {
+
+    this.setState({ users: [], loading: false });
+  };
+
   render() {
+
+    const {loading, users} = this.state
     return (
       <div className="App">
         <Navbar />
         <div className="container">
-          <Search searchUsers={this.searchUsers} />
-          <Users loading={this.state.loading} users={this.state.users} />
+          <Search
+            searchUsers={this.searchUsers}
+            showClearBtn={users.length > 0 ? true : false}
+            clearUsers={this.clearUsers}
+          />
+          <Users loading={loading} users={users} />
         </div>
       </div>
     );
