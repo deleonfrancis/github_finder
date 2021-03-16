@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     users: [],
     loading: false,
+    alert: null,
   };
 
   // puts initial 30 users on the page when it first loads
@@ -31,13 +32,16 @@ class App extends Component {
 
   // clear users from state
   clearUsers = () => {
-
     this.setState({ users: [], loading: false });
   };
 
-  render() {
+  //renders an alert if nothing in entered
+  setAlert = (message, colorType) => {
+    this.setState({ alert: { message, colorType } });
+  };
 
-    const {loading, users} = this.state
+  render() {
+    const { loading, users } = this.state;
     return (
       <div className="App">
         <Navbar />
@@ -46,6 +50,7 @@ class App extends Component {
             searchUsers={this.searchUsers}
             showClearBtn={users.length > 0 ? true : false}
             clearUsers={this.clearUsers}
+            setAlert={this.setAlert}
           />
           <Users loading={loading} users={users} />
         </div>
