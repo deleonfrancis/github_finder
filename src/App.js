@@ -4,6 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
 import axios from "axios";
 import Search from "./components/users/Search";
+import { Alert } from "./components/layout/Alert";
 
 class App extends Component {
   state = {
@@ -27,7 +28,7 @@ class App extends Component {
     const res = await axios.get(
       `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
-    this.setState({ users: res.data.items, loading: false });
+    this.setState({ users: res.data.items, loading: false, alert: null });
   };
 
   // clear users from state
@@ -37,7 +38,11 @@ class App extends Component {
 
   //renders an alert if nothing in entered
   setAlert = (message, colorType) => {
+    // same as: this.setState({ alert: { message:message, colorType:colorType } });
     this.setState({ alert: { message, colorType } });
+    // setTimeout(() => {
+    //   this.setState({alert:null})
+    // }, 3000);
   };
 
   render() {
@@ -46,6 +51,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
+          <Alert alert={this.state.alert} />
           <Search
             searchUsers={this.searchUsers}
             showClearBtn={users.length > 0 ? true : false}
