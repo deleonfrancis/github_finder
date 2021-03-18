@@ -24,9 +24,9 @@ body {
 }
 
 a {
-  /* color: var(--primary-color); */
+  color: var(--primary-color);
   text-decoration: none;
-  color: white;
+  /* color: white; */
 }
 
 a:hover {
