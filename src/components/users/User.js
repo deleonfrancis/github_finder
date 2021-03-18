@@ -33,11 +33,42 @@ export class User extends Component {
 
     if (loading) return <Spinner />;
 
-    return <Fragment>
-      <Link to ="/" className="btn btn-light">Back to Search</Link>
-    Hireable: {" "}
-    {hireable ? <i className="fas fa-check text-success" /> : <i className="fas fa-times-circle text-danger" />}
-    </Fragment>;
+    return (
+      <Fragment>
+        <Link to="/" className="btn btn-light">
+          Back to Search
+        </Link>
+        Hireable:{" "}
+        {hireable ? (
+          <i className="fas fa-check text-success" />
+        ) : (
+          <i className="fas fa-times-circle text-danger" />
+        )}
+        <div className="card grid-2">
+          <div className="all-center">
+            <img
+              src={avatar_url}
+              className="round-img"
+              alt={`${name} img`}
+              style={{ width: "150px" }}
+            />
+            <h2>{name}</h2>
+            <p>Location: {location}</p>
+          </div>
+          <div>
+            {bio && (
+              <Fragment>
+                <h3>Bio</h3>
+                <p>{bio}</p>
+              </Fragment>
+            )}
+            <a href={html_url} target="_blank" rel="noreferrer" className="btn btn-dark my-1">
+             GitHib Profile
+            </a>
+          </div>
+        </div>
+      </Fragment>
+    );
   }
 }
 
