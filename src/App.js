@@ -12,6 +12,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import About from "./components/pages/About";
+import User from "./components/users/User";
 
 class App extends Component {
   state = {
@@ -40,10 +41,10 @@ class App extends Component {
   };
 
   // git a github user
-  getUser = async (username) => {
+  getUser = async (login) => {
     this.setState({ loading: true });
     const res = await axios.get(
-      `https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/users/${login}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
     this.setState({ user: res.data, loading: false, alert: null });
   };
@@ -63,7 +64,7 @@ class App extends Component {
   };
 
   render() {
-    const { loading, users } = this.state;
+    const { loading, users, user } = this.state;
     return (
       <Router>
         <div className="App">
@@ -88,6 +89,9 @@ class App extends Component {
                 )}
               />
               <Route exact path="/about" component={About} />
+              <Route exact path="/user/:login" render={(props)=>(<Fragment>
+                <User {...props} getUser={this.getUser} user={user} loading={loading} />
+              </Fragment>)} />
             </Switch>
           </div>
         </div>
