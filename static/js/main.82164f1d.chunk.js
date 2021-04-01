@@ -1,2 +1,0 @@
-(this.webpackJsonpgithub_finder=this.webpackJsonpgithub_finder||[]).push([[0],{10:function(e,t,n){"use strict";n.r(t);var c=n(1),r=n.n(c),i=n(3),s=n.n(i),o=(n(8),n(0));var d=function(){return Object(o.jsx)("div",{className:"App",children:Object(o.jsx)("h1",{children:"Hello from App.js"})})};s.a.render(Object(o.jsx)(r.a.StrictMode,{children:Object(o.jsx)(d,{})}),document.getElementById("root"))},8:function(e,t,n){}},[[10,1,2]]]);
-//# sourceMappingURL=main.82164f1d.chunk.js.map
